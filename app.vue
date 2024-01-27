@@ -7,7 +7,10 @@ onMounted(() => {
   menuSelected.value = "portfolio"
 
 })
-
+const profileOpen=ref(false)
+function changeProfileSize(){
+  profileOpen.value=!profileOpen.value
+}
 const data= reactive([{
   title:'Mediviser',
   description:'Healthcare chatbot that can answer medical queries',
@@ -182,8 +185,8 @@ const options = {
   retina_detect: true,
   background: {
     image: "url('https://particles.js.org/images/background3.jpg')",
-    position: "cover"
-  }
+    position:"cover"
+}
 
 }
 
@@ -196,15 +199,21 @@ const options = {
     :options="options"
   >
 </NuxtParticles>
-<div class="min-h-screen px-20 py-20">
-  <div class="text-white grid grid-cols-8 gap-x-5">
+<div class="xl:min-h-screen lg:px-20 lg:py-20 px-5 py-5">
+  <div class="text-white grid xl:grid-cols-8 gap-x-5 gap-y-10 xl:gap-y-0">
     <div
-      class="border-2 sticky top-2 h-[45rem] border-gray-600 col-span-2  rounded-xl p-5 bg-gray-300/30 backdrop-blur-xl self-start hover:border-cyan-600">
-      <img src="/anishka_circle.png" class="w-[150px] block mx-auto rounded-full" />
-      <h1 class="mt-5 text-center font-semibold font-mono text-3xl">ANISHKA GUPTA</h1>
-      <h2 class="text-gray-50 bg-black/30 p-2 text-center mt-3 rounded-xl text-sm w-fit mx-auto">FullStack AI Developer
-        | UI Designer</h2>
-      <hr class="my-3 mx-2">
+      class="border-2 xl:sticky top-2 xl:h-[45rem] transition-all border-gray-600 xl:col-span-2 relative rounded-xl p-5 bg-gray-300/30 backdrop-blur-xl xl:self-start hover:border-cyan-600">
+      <div class="absolute w-fit top-0 right-0">
+        
+        <button class="p-4 xl:hidden hidden md:block hover:border-2 hover:border-cyan-600 text-white lg:text-xl text-sm bg-black/30 rounded-bl-xl rounded-tr-xl h-14 shadow-[4.0px_8.0px_8.0px_rgba(103,232,249,0.38)]" @click="changeProfileSize">Show Profile</button>
+        <button class="p-4 md:hidden text-white hover:border-2 hover:border-cyan-600 lg:text-xl text-sm bg-black/30 rounded-bl-xl rounded-tr-xl h-14 shadow-[4.0px_8.0px_8.0px_rgba(103,232,249,0.38)]" @click="changeProfileSize">↓</button>
+      </div>
+      <img src="/anishka_circle.png" class="lg:w-[150px] sm:w-[100px] w-[120px] mx-auto xl:block xl:mx-auto  mb-5 md:mb-0 rounded-full md:inline" />
+      <div class="md:inline-block md:ml-8 mx-auto xl:block xl:ml-0"><h1 class="xl:mt-5 text-center font-semibold font-mono lg:text-3xl md:text-2xl text-xl">ANISHKA GUPTA</h1>
+      <h2 class="text-gray-50 bg-black/30 p-2 text-center mt-3 rounded-xl lg:text-sm w-fit mx-auto text-xs ">FullStack AI Developer | UI Designer</h2></div>
+      
+      <div class="hidden xl:block transition-all" :class="{'!block': profileOpen}">
+        <hr class="my-3 mx-2 border-1 border-gray-600 rounded-xl ">
 
       <div class="flex mt-2">
         <div class="p-4 mr-7  bg-black/30 w-fit rounded-2xl shadow-[4.0px_8.0px_8.0px_rgba(103,232,249,0.38)]">
@@ -241,10 +250,12 @@ const options = {
           <a class="mt-2 text-xl" href="https://github.com/anishka25">Github</a>
         </div>
       </div>
+      </div>
+      
     </div>
     <div
-      class="col-span-6 border-[3px] border-gray-600 rounded-xl p-5 relative bg-gray-300/30 backdrop-blur  hover:border-cyan-600">
-      <div class="w-fit absolute right-0 p-4 px-10 grid grid-cols-4 top-0 rounded-tr-lg rounded-bl-3xl bg-gray-300/20">
+      class="xl:col-span-6 border-[3px] border-gray-600 rounded-xl md:p-5 p-2 relative bg-gray-300/30 backdrop-blur  hover:border-cyan-600">
+      <div class="w-fit absolute hidden right-0 p-4 px-10 lg:grid grid-cols-4 top-0 rounded-tr-lg rounded-bl-3xl bg-gray-300/20">
         <h1 @click="changeSelected('about')"
           :class="{ 'text-cyan-300': (menuSelected == 'about'), 'hover:!text-cyan-300': (menuSelected == 'about') }"
           class="px-4 text-xl text-center cursor-pointer hover:text-gray-200">About Me</h1>
@@ -280,28 +291,30 @@ const options = {
         <div>
           <h1 class="text-2xl p-2 libre font-bold ">My Current Work</h1>
 
-          <div class="flex mt-5 gap-8">
-            <div class="p-4  bg-black/30 w-fit rounded-2xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] max-w-[50%]">
+          <div class="lg:flex mt-5 gap-8">
+            <div class="p-4 mb-7 lg:mb-0 bg-black/30 lg:w-fit rounded-2xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] lg:max-w-[50%] w-full">
               <Icon name="eos-icons:ai" class="size-[50px]" color="#67e8f9" />
-              <span class="mt-2 text-xl font-semibold p-2"> AI -Computer Vision</span>
+              <span class="mt-2 text-xl  font-semibold p-2"> AI -Computer Vision</span>
               <h2 class="ml-[3.75rem]">The most modern and high-quality design made at a professional level.</h2>
             </div>
-            <div class="p-4  bg-black/30 w-fit rounded-2xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] max-w-[50%]">
+            <div class="p-4  bg-black/30 lg:w-fit rounded-2xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] ;g:max-w-[50%] w-full">
               <Icon name="ri:javascript-fill" class="size-[45px]" color="#67e8f9" />
-              <span class="mt-2 text-xl font-semibold p-2"> FullStack Web Development</span>
+              <span class="mt-2 text-xl  hidden md:inline font-semibold p-2"> FullStack Web Development</span>
+              <span class="mt-2 text-xl  md:hidden font-semibold p-2"> FullStack Web Dev</span>
               <h2 class="ml-14">The most modern and high-quality design made at a professional level.</h2>
             </div>
           </div>
 
-          <div class="flex mt-8 gap-8 mb-5">
-            <div class="p-4  bg-black/30 w-fit rounded-2xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] max-w-[50%]">
+          <div class="lg:flex mt-8 gap-8 mb-5">
+            <div class="p-4 mb-7 lg:mb-0 bg-black/30 lg:w-fit rounded-2xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] lg:max-w-[50%] w-full">
               <Icon name="iconoir:design-pencil" class="size-[43px]" color="#67e8f9" />
               <span class="mt-2 text-xl font-semibold p-2"> UI/UX Design</span>
               <h2 class="ml-14">The most modern and high-quality design made at a professional level.</h2>
             </div>
-            <div class="p-4  bg-black/30 w-fit rounded-2xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] max-w-[50%]">
+            <div class="p-4  bg-black/30 lg:w-fit rounded-2xl shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] lg:max-w-[50%] w-full">
               <Icon name="codicon:azure" class="size-[40px]" color="#67e8f9" />
-              <span class="mt-2 text-xl font-semibold p-2"> Microsoft Learn Student Ambassador</span>
+              <span class="mt-2 text-xl hidden md:inline font-semibold p-2"> Microsoft Learn Student Ambassador</span>
+              <span class="mt-2 text-xl md:hidden font-semibold p-2"> MLSA</span>
               <h2 class="ml-14">The most modern and high-quality design made at a professional level.</h2>
             </div>
           </div>
@@ -319,8 +332,8 @@ const options = {
             <h1 class="mt-2 text-2xl font-semibold">EDUCATION</h1>
           </div>
         </div>
-        <div class="border-l-[3px] h-[12rem] relative ml-[2.25rem] border-black/30 mb-40">
-          <ul class="absolute top-2 left-[0.82rem]">
+        <div class="sm:border-l-[3px] h-[12rem] relative ml-[2.25rem] border-black/30 lg:mb-40 mb-72">
+          <ul class="absolute sm:top-2 top-5 left-[0.82rem]">
             <li class="text-xl pl-[2.6rem] mb-10">Vivekananda Institute of Professional Studies
               <div class="text-lg">Bachelors in Computer Science </div>
               <div class="text-xl font-semibold text-cyan-300">2022-2026</div>
@@ -345,16 +358,16 @@ const options = {
             <h1 class="mt-2 text-2xl font-semibold">EXPERIENCE</h1>
           </div>
         </div>
-        <div class="border-l-[3px] h-[13.5rem] relative ml-[2.25rem] border-black/30 mb-56">
-          <ul class="absolute top-2 left-[0.82rem]">
+        <div class="sm:border-l-[3px] h-[13.5rem] relative ml-[2.25rem] border-black/30 sm:mb-56 mb-[38rem]">
+          <ul class="absolute sm:top-2 top-5 left-[0.82rem]">
             <li class="text-xl pl-[2.6rem] mb-10">Butterfly Technology
               <div class="text-lg">Internship </div>
               <div class="text-xl font-semibold text-cyan-300">July'23- Sep'23</div>
-              <div class="pt-4">I've impactful UI designs for a marketing agency and demonstrated the ability to harmonize user-centric experiences with visually captivating interfaces. </div>
+              <div class="pt-4 w-60 sm:w-full">I've impactful UI designs for a marketing agency and demonstrated the ability to harmonize user-centric experiences with visually captivating interfaces. </div>
             </li>
             <li class="text-xl pl-[2.6rem] mb-10">Microsoft Learn Student Ambassador
-              <div class="text-lg"> Microsoft
-                <br>Anishka.Gupta@studentambassadors.com </div>
+              <div class="text-lg">
+                <h1 class="hidden sm:block">anishka.gupta@studentambassadors.com</h1><h1 class="block sm:hidden"><a href="mailto:anishka.Gupta@studentambassadors.com">Email</a></h1> </div>
               <div class="text-xl font-semibold text-cyan-300">Nov'23-Current</div>
               <div class="pt-4 mr-5">Student Ambassadors are a global group of campus leaders who are eager to help fellow students, create robust tech communities and develop technical and career skills for the future. </div>
             </li>
@@ -399,11 +412,11 @@ const options = {
       <div v-if="menuSelected == 'portfolio'">
         <h1 class="text-3xl p-2 libre font-bold ">Portfolio</h1>
         <hr class="w-24 ml-2 border-b-4 border-cyan-300 rounded-xl mt-1">
-        <div class="grid grid-cols-3 gap-x-3 mt-7 gap-y-7 pl-5">
+        <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-x-3 mt-7 gap-y-7 pl-5">
           <template v-for="d in data">
             <div class="relative" >
-              <img :src="d.imageURL" class="w-80 h-52 rounded-xl border-4 border-black/30" />
-              <a class="absolute block w-80 h-52 py-10 bg-black opacity-0 hover:opacity-60 duration-300 rounded-xl cursor-pointer top-0 transition-all" :href="d.link">
+              <img :src="d.imageURL" class="w-full h-52 rounded-xl border-4 border-black/30" />
+              <a class="absolute block w-full h-52 py-10 bg-black opacity-0 hover:opacity-60 duration-300 rounded-xl cursor-pointer top-0 transition-all" :href="d.link">
                 <div class="w-fit mx-auto pt-11">
                   <Icon name="lets-icons:view-alt-fill" class="size-6" color="#67e8f9" ></Icon>
                 </div>
@@ -424,7 +437,7 @@ const options = {
         </h1>
         <hr class="w-24 ml-2 border-b-4 border-cyan-300 rounded-xl mt-1">
         <h1 class="ml-2 text-2xl libre mt-10 mb-5">Contact Form</h1>
-        <form action="https://formsubmit.co/5d41d56b8e6d39b657eab6ec019ecb15" class="mx-2" method="POST">
+        <form action="https://formsubmit.co/anishkagupta25@gmail.com" class="mx-2" method="POST">
           
           <div class="grid grid-cols-2 gap-4">
             <input type="text" class="  p-5 rounded-xl text-xl bg-black/30 border-2 border-black/55  h-14 text-white hover:border-cyan-200 focus:border-blue-300 focus:outline-none" placeholder="Full Name"  name="name" required>
@@ -437,7 +450,22 @@ const options = {
       </div>
     </div>
   </div>
+
 </div>
+<div class=" lg:hidden fixed bottom-0 p-4 md:px-10 grid grid-cols-4 w-full bg-gray-300/50 backdrop-blur">
+        <h1 @click="changeSelected('about')"
+          :class="{ 'text-cyan-300': (menuSelected == 'about'), 'hover:!text-cyan-300': (menuSelected == 'about') }"
+          class="md:px-4 px-2 md:text-xl sm:text-base text-sm  text-center cursor-pointer hover:text-gray-200">About Me</h1>
+        <h1 @click="changeSelected('resume')"
+          :class="{ 'text-cyan-300': (menuSelected == 'resume'), 'hover:!text-cyan-300': (menuSelected == 'resume') }"
+          class="md:px-4 px-2 md:text-xl sm:text-base text-sm  text-center cursor-pointer hover:text-gray-200">Resume</h1>
+        <h1 @click="changeSelected('portfolio')"
+          :class="{ 'text-cyan-300': (menuSelected == 'portfolio'), 'hover:!text-cyan-300': (menuSelected == 'portfolio') }"
+          class="md:px-4 px-2 md:text-xl sm:text-base text-sm  text-center cursor-pointer hover:text-gray-200">Portfolio</h1>
+        <h1 @click="changeSelected('contact')"
+          :class="{ 'text-cyan-300': (menuSelected == 'contact'), 'hover:!text-cyan-300': (menuSelected == 'contact') }"
+          class="md:px-4 px-2 md:text-xl sm:text-base text-sm  text-center cursor-pointer hover:text-gray-200">Contacts</h1>
+      </div>
   </div>
 
 </template>
