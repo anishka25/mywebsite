@@ -4,7 +4,7 @@ function changeSelected(x) {
   menuSelected.value = x
 }
 onMounted(() => {
-  menuSelected.value = "portfolio"
+  menuSelected.value = "about"
 
 })
 const profileOpen=ref(false)
@@ -437,7 +437,7 @@ const options = {
         </h1>
         <hr class="w-24 ml-2 border-b-4 border-cyan-300 rounded-xl mt-1">
         <h1 class="ml-2 text-2xl libre mt-10 mb-5">Contact Form</h1>
-        <form action="https://formsubmit.co/anishkagupta25@gmail.com" class="mx-2" method="POST">
+        <form action="https://formsubmit.co/5d41d56b8e6d39b657eab6ec019ecb15" class="mx-2" method="POST">
           
           <div class="grid grid-cols-2 gap-4">
             <input type="text" class="  p-5 rounded-xl text-xl bg-black/30 border-2 border-black/55  h-14 text-white hover:border-cyan-200 focus:border-blue-300 focus:outline-none" placeholder="Full Name"  name="name" required>
